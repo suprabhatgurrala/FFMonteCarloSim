@@ -1,0 +1,10 @@
+Sup,Teja,152,125,Kavin,79,97,Evan,116,190,Nick,106,95,Bonk,145,149,Teja,103,152,Kavin,117,137,Sri,110,146,Bonk,195,125,Aman,102,119,Nick,164,89,Sid,112,124,Abhinav,0,0
+Teja,Sup,125,152,Bonk,127,110,Nick,153,175,Kavin,94,91,Sid,74,106,Sup,152,103,Bonk,101,157,Kavin,117,94,Nick,85,101,Evan,112,116,Abhinav,109,134,Aman,133,95,Sri,0,0
+Nick,Bonk,111,133,Sri,94,109,Teja,175,153,Sup,95,106,Kavin,98,123,Abhinav,135,113,Aman,145,101,Bonk,61,120,Teja,101,85,Kavin,117,121,Sup,89,164,Evan,158,67,Sid,0,0
+Bonk,Nick,133,111,Teja,110,127,Kavin,102,117,Aman,88,113,Sup,149,145,Kavin,142,114,Teja,157,101,Nick,120,61,Sup,125,195,Sri,102,113,Sid,87,73,Abhinav,152,125,Evan,0,0
+Kavin,Abhinav,112,113,Sup,97,79,Bonk,117,102,Teja,91,94,Nick,123,98,Bonk,114,142,Sup,137,117,Teja,94,117,Sid,92,179,Nick,121,117,Evan,85,92,Sri,134,78,Aman,0,0
+Evan,Sri,126,140,Aman,116,142,Sup,190,116,Sid,128,95,Abhinav,141,119,Aman,149,110,Sid,135,106,Abhinav,141,137,Sri,149,110,Teja,116,112,Kavin,92,85,Nick,67,158,Bonk,0,0
+Abhinav,Kavin,113,112,Sid,113,144,Aman,151,119,Sri,113,83,Evan,119,141,Nick,113,135,Sri,128,135,Evan,137,141,Aman,93,158,Sid,91,149,Teja,134,109,Bonk,125,152,Sup,0,0
+Sri,Evan,140,126,Nick,109,94,Sid,141,112,Abhinav,83,113,Aman,122,131,Sid,158,115,Abhinav,135,128,Sup,146,110,Evan,110,149,Bonk,113,102,Aman,94,83,Kavin,78,134,Teja,0,0
+Sid,Aman,137,111,Abhinav,144,113,Sri,112,141,Evan,95,128,Teja,106,74,Sri,115,158,Evan,106,135,Aman,115,186,Kavin,179,92,Abhinav,149,91,Bonk,73,87,Sup,124,112,Nick,0,0
+Aman,Sid,111,137,Evan,142,116,Abhinav,119,151,Bonk,113,88,Sri,131,122,Evan,110,149,Nick,101,145,Sid,186,115,Abhinav,158,93,Sup,119,102,Sri,83,94,Teja,95,133,Kavin,0,0
