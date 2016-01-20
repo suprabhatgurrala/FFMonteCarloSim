@@ -1,85 +1,79 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class Team implements Comparable<Team> {
     String name;
-    ArrayList<Matchup> schedule;
-    
-    public Team(String name, ArrayList<Matchup> schedule) {
-        this.name = name;
-        this.schedule = schedule;
-    }
+    List<Matchup> schedule;
     
     public Team(String name) {
         this.name = name;
-        schedule = new ArrayList<Matchup>();
-    }
-    
-    public ArrayList<Matchup> getSchedule() {
-        return schedule;
     }
     
     public String getName() {
         return name;
     }
     
+    public void setSchedule(List<Matchup> schedule) {
+    	this.schedule = schedule;
+    }
+    
     public int getWins() {
-        int wins = 0;
-        for(Matchup m : schedule) {
-            if(m.isWin()) {
-                wins++;
-            }
-        }
-        return wins;
+        //TODO returns the number of wins this team currently has
+    	int wins = 0;
+    	for(Matchup m : schedule) {
+    		if(m.getWinner().equals(this)) {
+    			wins++;
+    		}
+    	}
+    	return wins;
     }
     
-    public int getPointsFor() {
-        int pointsFor = 0;
-        for(Matchup m : schedule) {
-            pointsFor += m.getPointsFor();
-        }
-        return pointsFor;
+    public double getPointsFor() {
+        //TODO returns the total points this team has scored to date
+    	double pf = 0.0;
+    	for(Matchup m : schedule) {
+    		pf += m.getPointsFor(this);
+    	}
+    	return pf;
     }
     
-    public int getPointsAllowed() {
-        int pointsAllowed = 0;
-        for(Matchup m : schedule) {
-            pointsAllowed += m.getPointsAllowed();
-        }
-        return pointsAllowed;
+    public double getPointsAllowed() {
+        //TODO returns the total points this team's opponents have scored to date
+    	double pa = 0.0;
+    	for(Matchup m : schedule) {
+    		pa += m.getPointsAllowed(this);
+    	}
+    	return pa;
     }
     
     public int getGamesPlayed() {
-        int gms = 0;
-        for(Matchup m : schedule) {
-            if(m.completed()) {
-                gms++;
-            }
-        }
-        return gms;
+        //TODO returns the number of games this team has played to date
+    	return schedule.size();
     }
     
-    public int getWinsVsOpponent(String opponentName) {
+    public int getWinsVsOpponent(Team opponent) {
+    	//TODO returns the number of wins a team has vs a specific opponent
+    	int wins = 0;
+    	for(Matchup m : schedule) {
+    		if(m.getWinner().equals(this) && m.getLoser().equals(opponent)) {
+    			wins++;
+    		}
+    	}
+    	return wins;
+    }
+    
+    public int getGamesPlayedVsOpponent(Team opponent) {
+    	//TODO returns the number of games a team has played vs a specific opponent
     	int count = 0;
     	for(Matchup m : schedule) {
-    		if(m.getOpponent().equals(opponentName) && m.isWin()) {
+    		if((m.getHome().equals(this) || m.getAway().equals(this)) && (m.getHome().equals(opponent) || m.getAway().equals(opponent))) {
     			count++;
     		}
     	}
     	return count;
     }
     
-    public int getGamesPlayedVsOpponent(String opponentName) {
-    	int count = 0;
-    	for(Matchup m : schedule) {
-    		if(m.getOpponent().equals(opponentName)) {
-    			count++;
-    		}
-    	}
-    	return count;
-    }
-    
-    public int getLossesVsOpponent(String opponentName) {
-    	return getGamesPlayedVsOpponent(opponentName) - getWinsVsOpponent(opponentName);
+    public int getLossesVsOpponent(Team opponent) {
+    	return getGamesPlayedVsOpponent(opponent) - getWinsVsOpponent(opponent);
     }
     
     public int getLosses() {
@@ -87,13 +81,14 @@ public class Team implements Comparable<Team> {
     }
     
     public double getAvgPts() {
-        return 1.0 * getPointsFor() / getGamesPlayed();
+        return getPointsFor() / getGamesPlayed();
     }
     
     public double getStdDev() {
+    	//TODO returns the standard deviation of points scored by this team to date
         int sum = 0;
-        for(int i=0; i<getGamesPlayed(); i++) {
-            sum += Math.pow((schedule.get(i).getPointsFor() - getAvgPts()),2);
+        for(Matchup m : schedule) {
+            sum += Math.pow((m.getPointsFor(this) - getAvgPts()),2);
         }
         return Math.sqrt(sum);
     }
@@ -107,32 +102,34 @@ public class Team implements Comparable<Team> {
     }
     
     public int compareTo(Team o) {
-    	return getWins() - o.getWins();
+    	//Teams are naturally ordered by their win total. Ties are broken by PF. Use more complicated comparators for other tiebreak methods.
+    	if(o.getWins() - getWins() != 0) {
+    		return o.getWins() - getWins();
+    	} else {
+    		return (int) (Math.round(o.getPointsFor()) - getPointsFor());
+    	}
     }
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		final int prime = 23;
+		int result = 7;
+		result = prime * result + name.hashCode();
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Team)) {
 			return false;
+		}
 		Team other = (Team) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
+		return name.equals(other.getName());
 	}
-    
 }

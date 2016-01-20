@@ -1,0 +1,4 @@
+
+public enum Tiebreakers {
+	DIVISION_WINNER, H2H, POINTS_FOR, POINTS_AGAINST, DIVISION_RECORD;
+}

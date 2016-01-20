@@ -47,6 +47,14 @@ public class Simulator {
 		return scenarios;
 	}
 	
+	public League getLeague() {
+		return league;
+	}
+
+	public void setLeague(League league) {
+		this.league = league;
+	}
+
 	public double[] getOddsForSeed(Team t) {
 		double[] seedCount = new double[10];
 		for(League l : sims) {
